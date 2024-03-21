@@ -1,0 +1,16 @@
+# ninja log v5
+1	77	7325724764700057	CMakeFiles/farmacie2.dir/main.c.obj	9524745c05124322
+77	154	7325724765440043	farmacie2.exe	acfea7c9472ed7bc
+4	171	7320296815797797	CMakeFiles/farmacie2.dir/Medicament.c.obj	ff7b614322b0addf
+5	95	7325607485865876	CMakeFiles/farmacie2.dir/ui.c.obj	f142007c50f6580b
+2	92	7325634779709089	CMakeFiles/farmacie2.dir/FarmacieService.c.obj	3d713b92b25e462c
+2	86	7325634639545976	CMakeFiles/farmacie2.dir/Farmacie.c.obj	c3a0e2cdadae46bc
+1	66	7326326212943745	CMakeFiles/farmacie2.dir/main.c.obj	9524745c05124322
+66	145	7326326213713748	farmacie2.exe	acfea7c9472ed7bc
+5	78	7326331330619906	CMakeFiles/farmacie2.dir/Medicament.c.obj	ff7b614322b0addf
+11	86	7326331330699896	CMakeFiles/farmacie2.dir/ui.c.obj	f142007c50f6580b
+1	88	7326331330729933	CMakeFiles/farmacie2.dir/Farmacie.c.obj	c3a0e2cdadae46bc
+8	92	7326331330779894	CMakeFiles/farmacie2.dir/FarmacieService.c.obj	3d713b92b25e462c
+93	168	7326331331499885	farmacie2.exe	acfea7c9472ed7bc
+1	66	7326334063564663	CMakeFiles/farmacie2.dir/Medicament.c.obj	ff7b614322b0addf
+66	138	7326334064264647	farmacie2.exe	acfea7c9472ed7bc

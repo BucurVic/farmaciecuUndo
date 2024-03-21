@@ -1,0 +1,556 @@
+        -:    0:Source:C:/Users/Blajan David/faculta/sem 2-oop/farmacie2/FarmacieService.c
+        -:    0:Graph:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\FarmacieService.c.gcno
+        -:    0:Data:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\FarmacieService.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Blajan David on 3/10/2024.
+        -:    3://
+        -:    4:#include "FarmacieService.h"
+        -:    5:#include <string.h>
+        -:    6:#include <assert.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <stdio.h>
+        -:    9:
+        -:   10:
+        -:   11:/**
+        -:   12: * Service function to add meds to the array
+        -:   13: * @param farmacie - Farmacie* array of meds
+        -:   14: * @param id - int,>0
+        -:   15: * @param name - char, not null
+        -:   16: * @param concentration - char, not null
+        -:   17: * @param amount - int, >=0
+        -:   18: * @return 1,2,3,4 - if there was an error validating the med
+        -:   19: *         0 - if everything went well
+        -:   20: */
+function addMedService called 16 returned 100% blocks executed 100%
+       16:   21:int addMedService(Farmacie* far, int id, char* nume, char* concentratie, int cantitate){
+       16:   22:    Medicament* med = createMed(id, nume, concentratie, cantitate);
+       16:   22-block  0
+call    0 returned 16
+       16:   23:    int succ = validate(med);
+call    0 returned 16
+       16:   24:    if (succ!=0){
+branch  0 taken 1 (fallthrough)
+branch  1 taken 15
+        1:   25:        destroyMed(med);
+        1:   25-block  0
+call    0 returned 1
+        1:   26:        return succ;
+        -:   27:    }
+       15:   28:    addMed(far, med);
+       15:   28-block  0
+call    0 returned 15
+       15:   29:    return 0;
+        -:   30:}
+        -:   31:
+        -:   32:/**
+        -:   33: * Service function to change meds in the array
+        -:   34: * @param farmacie - Farmacie* array of meds
+        -:   35: * @param id - int,>0
+        -:   36: * @param name - char, not null
+        -:   37: * @param concentration - char, not null
+        -:   38: * @return 1,2,3,4 - if there was an error validating the med
+        -:   39: *         5 - if there wasnt any element with the given id
+        -:   40: *         0 - if everything went well
+        -:   41: */
+function changeMedService called 3 returned 100% blocks executed 100%
+        3:   42:int changeMedService(Farmacie* far, int id, char* nume, char* concentratie){
+        3:   43:    Medicament* med = createMed(id, nume, concentratie, 0);
+        3:   43-block  0
+call    0 returned 3
+        3:   44:    int succ = validate(med);
+call    0 returned 3
+        3:   45:    if (succ!=0){
+branch  0 taken 1 (fallthrough)
+branch  1 taken 2
+        1:   46:        destroyMed(med);
+        1:   46-block  0
+call    0 returned 1
+        1:   47:        return succ;
+        -:   48:    }
+        -:   49:
+        2:   50:    succ = changeMed(far, med);
+        2:   50-block  0
+call    0 returned 2
+        2:   51:    destroyMed(med);
+call    0 returned 2
+        2:   52:    if (succ==1)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        1:   53:        return 5;
+        1:   53-block  0
+        1:   54:    return 0;
+        1:   54-block  0
+        -:   55:}
+        -:   56:
+        -:   57:/**
+        -:   58: * Service function to delete meds in the array
+        -:   59: * @param farmacie - Farmacie* array of meds
+        -:   60: * @param id - int,>0
+        -:   61: * @return 1 - if there wasnt any element with the given id
+        -:   62: *         0 - if everything went well
+        -:   63: */
+function deleteMedService called 2 returned 100% blocks executed 100%
+        2:   64:int deleteMedService(Farmacie* far, int id){
+        2:   65:    int succ = deleteMed(far, id);
+        2:   65-block  0
+call    0 returned 2
+        2:   66:    if (succ == 0)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        1:   67:        return 0;
+        1:   67-block  0
+        -:   68:    else
+        1:   69:        return 1;
+        1:   69-block  0
+        -:   70:}
+        -:   71:
+        -:   72:/**
+        -:   73: * Service function to sort the meds by name, amount
+        -:   74: * @param farmacie - Farmacie* array of meds
+        -:   75: * @param reverse - char, true - if u want the list in decreasing order, false otherwise
+        -:   76: * @return meds - array of meds sorted
+        -:   77: */
+function sortMeds called 2 returned 100% blocks executed 100%
+        2:   78:Farmacie* sortMeds(Farmacie* far, char* reverse){
+        2:   79:    Farmacie* meds = getAll(far);
+        2:   79-block  0
+call    0 returned 2
+        8:   80:    for (int i=0;i<size(meds)-1;i++)
+        6:   80-block  0
+        8:   80-block  1
+call    0 returned 8
+branch  1 taken 6
+branch  2 taken 2 (fallthrough)
+       18:   81:        for (int j=i+1;j<size(meds);j++)
+        6:   81-block  0
+       12:   81-block  1
+       18:   81-block  2
+call    0 returned 18
+branch  1 taken 12
+branch  2 taken 6 (fallthrough)
+       12:   82:            if (strcmp(getName(getElement(meds, i)), getName(getElement(meds, j)))>0){
+       12:   82-block  0
+call    0 returned 12
+call    1 returned 12
+call    2 returned 12
+call    3 returned 12
+branch  4 taken 3 (fallthrough)
+branch  5 taken 9
+        3:   83:                ElemType aux = getElement(meds, i);
+        3:   83-block  0
+call    0 returned 3
+        3:   84:                meds->elems[i] = meds->elems[j];
+        3:   85:                meds->elems[j] = aux;
+        9:   86:            } else if(strcmp(getName(getElement(meds, i)), getName(getElement(meds, j)))==0)
+        9:   86-block  0
+call    0 returned 9
+call    1 returned 9
+call    2 returned 9
+call    3 returned 9
+branch  4 taken 3 (fallthrough)
+branch  5 taken 6
+        3:   87:                if (getAmount(getElement(meds, i)) > getAmount(getElement(meds, j))){
+        3:   87-block  0
+call    0 returned 3
+call    1 returned 3
+call    2 returned 3
+call    3 returned 3
+branch  4 taken 2 (fallthrough)
+branch  5 taken 1
+        2:   88:                    ElemType aux = getElement(meds, i);
+        2:   88-block  0
+call    0 returned 2
+        2:   89:                    meds->elems[i] = meds->elems[j];
+        2:   90:                    meds->elems[j] = aux;
+        -:   91:                }
+        2:   92:    if (strcmp(reverse,"true")==0)
+        2:   92-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        3:   93:        for (int i=0;i<size(meds)/2;i++){
+        1:   93-block  0
+        3:   93-block  1
+call    0 returned 3
+branch  1 taken 2
+branch  2 taken 1 (fallthrough)
+        2:   94:            ElemType aux = getElement(meds, i);
+        2:   94-block  0
+call    0 returned 2
+        2:   95:            meds->elems[i] = meds->elems[size(meds)-i-1];
+call    0 returned 2
+        2:   96:            meds->elems[size(meds)-i-1] = aux;
+call    0 returned 2
+        -:   97:        }
+        2:   98:    return meds;
+        2:   98-block  0
+        -:   99:}
+        -:  100:
+        -:  101:/**
+        -:  102: * Service function to filter meds by amount, or by the first letter of the name
+        -:  103: * if those filter exist
+        -:  104: * @param far - Farmacie
+        -:  105: * @param amount - int
+        -:  106: * @param letter - char
+        -:  107: * @return filteredMeds - Farmacie filtered by amount, name
+        -:  108: */
+function filterMeds called 3 returned 100% blocks executed 100%
+        3:  109:Farmacie* filterMeds(Farmacie* far, int amount, char* letter){
+        3:  110:    Farmacie* filteredMeds = createFarmacie();
+        3:  110-block  0
+call    0 returned 3
+       15:  111:    for(int i=0;i<size(far);i++)
+       12:  111-block  0
+       15:  111-block  1
+call    0 returned 15
+branch  1 taken 12
+branch  2 taken 3 (fallthrough)
+       12:  112:        if(amount!= -1 && strcmp(letter,"")!=0) {
+       12:  112-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 4
+        8:  112-block  1
+branch  2 taken 4 (fallthrough)
+branch  3 taken 4
+        6:  113:            if (getAmount(getElement(far, i)) < amount
+        4:  113-block  0
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 2 (fallthrough)
+branch  3 taken 2
+        4:  113-block  1
+        2:  114:            && strncmp(getName(getElement(far, i)), letter, 1) == 0)
+        2:  114-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 1 (fallthrough)
+branch  3 taken 1
+        1:  115:                addMed(filteredMeds, getElement(far, i));
+        1:  115-block  0
+call    0 returned 1
+call    1 returned 1
+        8:  116:        }else if(amount!= -1) {
+        8:  116-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 4
+        4:  117:            if(getAmount(getElement(far, i))<amount)
+        4:  117-block  0
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 3 (fallthrough)
+branch  3 taken 1
+        3:  118:                addMed(filteredMeds, getElement(far, i));
+        3:  118-block  0
+call    0 returned 3
+call    1 returned 3
+        4:  119:        }else if(strcmp(letter,"")!=0) {
+        4:  119-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 0
+        4:  120:            if(strncmp(getName(getElement(far, i)),letter,1)==0)
+        4:  120-block  0
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 2 (fallthrough)
+branch  3 taken 2
+        2:  121:                addMed(filteredMeds, getElement(far, i));
+        2:  121-block  0
+call    0 returned 2
+call    1 returned 2
+        -:  122:        }
+        3:  123:    return filteredMeds;
+        3:  123-block  0
+        -:  124:}
+        -:  125:
+        -:  126:/**
+        -:  127:* Functions for testing
+        -:  128:*/
+        -:  129:
+function testAddMed called 1 returned 100% blocks executed 83%
+        1:  130:void testAddMed(){
+        1:  131:    Farmacie *far = createFarmacie();
+        1:  131-block  0
+call    0 returned 1
+        1:  132:    addMedService(far, 1, "paracetamol", "30%", 10);
+call    0 returned 1
+        1:  133:    addMedService(far, 2, "nurofen", "50%", 5);
+call    0 returned 1
+       1*:  134:    assert(size(far)==2);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  134-block  0
+call    3 never executed
+        1:  134-block  1
+        1:  135:    int error = addMedService(far, 3, "", "", 3);
+        1:  135-block  0
+call    0 returned 1
+       1*:  136:    assert(error == 2);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  136-block  0
+call    2 never executed
+        1:  136-block  1
+        1:  137:    addMedService(far, 1, "paracetamol", "30%", 5);
+        1:  137-block  0
+call    0 returned 1
+       1*:  138:    assert(size(far)==2);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  138-block  0
+call    3 never executed
+        1:  138-block  1
+        1:  139:    Medicament* med = getElement(far, 0);
+        1:  139-block  0
+call    0 returned 1
+       1*:  140:    assert(getAmount(med) == 15);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  140-block  0
+call    3 never executed
+        1:  140-block  1
+        1:  141:    destroyFarmacie(far);
+        1:  141-block  0
+call    0 returned 1
+        1:  142:}
+        -:  143:
+function testChangeMed called 1 returned 100% blocks executed 81%
+        1:  144:void testChangeMed(){
+        1:  145:    Farmacie *far = createFarmacie();
+        1:  145-block  0
+call    0 returned 1
+        1:  146:    addMedService(far, 1, "paracetamol", "30%", 10);
+call    0 returned 1
+        1:  147:    addMedService(far, 2, "nurofen", "50%", 5);
+call    0 returned 1
+       1*:  148:    assert(size(far)==2);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  148-block  0
+call    3 never executed
+        1:  148-block  1
+        1:  149:    changeMedService(far, 1, "strepsils", "20%");
+        1:  149-block  0
+call    0 returned 1
+        1:  150:    Medicament* med = getElement(far, 0);
+call    0 returned 1
+       1*:  151:    assert(strcmp(getName(med),"strepsils")==0);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  151-block  0
+call    3 never executed
+        1:  151-block  1
+       1*:  152:    assert(strcmp(getConcentration(med),"20%")==0);
+        1:  152-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  152-block  1
+call    3 never executed
+        1:  152-block  2
+        1:  153:    int error = changeMedService(far,1,"","");
+        1:  153-block  0
+call    0 returned 1
+       1*:  154:    assert(error == 2);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  154-block  0
+call    2 never executed
+        1:  154-block  1
+        1:  155:    int error2 = changeMedService(far, 3, "strepsils", "29%");
+        1:  155-block  0
+call    0 returned 1
+       1*:  156:    assert(error2 == 5);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  156-block  0
+call    2 never executed
+        1:  156-block  1
+        1:  157:    destroyFarmacie(far);
+        1:  157-block  0
+call    0 returned 1
+        1:  158:}
+        -:  159:
+function testDeleteMed called 1 returned 100% blocks executed 81%
+        1:  160:void testDeleteMed(){
+        1:  161:    Farmacie *far = createFarmacie();
+        1:  161-block  0
+call    0 returned 1
+        1:  162:    addMedService(far, 1, "paracetamol", "30%", 10);
+call    0 returned 1
+        1:  163:    addMedService(far, 2, "nurofen", "50%", 5);
+call    0 returned 1
+       1*:  164:    assert(size(far)==2);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  164-block  0
+call    3 never executed
+        1:  164-block  1
+        1:  165:    int error2 = deleteMedService(far, 1);
+        1:  165-block  0
+call    0 returned 1
+       1*:  166:    assert(error2==0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  166-block  0
+call    2 never executed
+        1:  166-block  1
+       1*:  167:    assert(size(far)==1);
+        1:  167-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  167-block  1
+call    3 never executed
+        1:  167-block  2
+        1:  168:    int error = deleteMedService(far, 5);
+        1:  168-block  0
+call    0 returned 1
+       1*:  169:    assert(error == 1);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  169-block  0
+call    2 never executed
+        1:  169-block  1
+        1:  170:    destroyFarmacie(far);
+        1:  170-block  0
+call    0 returned 1
+        1:  171:}
+        -:  172:
+function testSortMeds called 1 returned 100% blocks executed 85%
+        1:  173:void testSortMeds(){
+        1:  174:    Farmacie *far = createFarmacie();
+        1:  174-block  0
+call    0 returned 1
+        1:  175:    addMedService(far, 1, "paracetamol", "30%", 10);
+call    0 returned 1
+        1:  176:    addMedService(far, 2, "nurofen", "50%", 5);
+call    0 returned 1
+        1:  177:    addMedService(far, 3, "paracetamol", "25%", 8);
+call    0 returned 1
+        1:  178:    addMedService(far, 4, "decasept", "100%", 15);
+call    0 returned 1
+        1:  179:    Farmacie* meds = sortMeds(far, "false");
+call    0 returned 1
+        1:  180:    Medicament* med1 = getElement(meds, 0);
+call    0 returned 1
+        1:  181:    Medicament* med2 = getElement(meds, 1);
+call    0 returned 1
+        1:  182:    Medicament* med3 = getElement(meds, 2);
+call    0 returned 1
+        1:  183:    Medicament* med4 = getElement(meds, 3);
+call    0 returned 1
+       1*:  184:    assert(getId(med1) == 4);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  184-block  0
+call    3 never executed
+        1:  184-block  1
+       1*:  185:    assert(getId(med2) == 2);
+        1:  185-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  185-block  1
+call    3 never executed
+        1:  185-block  2
+       1*:  186:    assert(getId(med3) == 3);
+        1:  186-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  186-block  1
+call    3 never executed
+        1:  186-block  2
+       1*:  187:    assert(getId(med4) == 1);
+        1:  187-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  187-block  1
+call    3 never executed
+        1:  187-block  2
+        1:  188:    Farmacie* meds1 = sortMeds(far, "true");
+        1:  188-block  0
+call    0 returned 1
+        1:  189:    Medicament* med5 = getElement(meds1, 0);
+call    0 returned 1
+       1*:  190:    assert(getId(med5)==1);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  190-block  0
+call    3 never executed
+        1:  190-block  1
+        1:  191:    destroyFarmacie(far);
+        1:  191-block  0
+call    0 returned 1
+        1:  192:}
+        -:  193:
+function testFilterMeds called 1 returned 100% blocks executed 85%
+        1:  194:void testFilterMeds(){
+        1:  195:    Farmacie *far = createFarmacie();
+        1:  195-block  0
+call    0 returned 1
+        1:  196:    addMedService(far, 1, "paracetamol", "30%", 10);
+call    0 returned 1
+        1:  197:    addMedService(far, 2, "nurofen", "50%", 5);
+call    0 returned 1
+        1:  198:    addMedService(far, 3, "paracetamol", "25%", 8);
+call    0 returned 1
+        1:  199:    addMedService(far, 4, "decasept", "100%", 15);
+call    0 returned 1
+        1:  200:    Farmacie* filteredMeds = filterMeds(far, 9, "p");
+call    0 returned 1
+       1*:  201:    assert(size(filteredMeds) == 1);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  201-block  0
+call    3 never executed
+        1:  201-block  1
+       1*:  202:    assert(getId(getElement(filteredMeds, 0))==3);
+        1:  202-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+    %%%%%:  202-block  1
+call    4 never executed
+        1:  202-block  2
+        1:  203:    free(filteredMeds->elems);
+        1:  204:    free(filteredMeds);
+        1:  205:    filteredMeds = filterMeds(far, 13, "");
+        1:  205-block  0
+call    0 returned 1
+       1*:  206:    assert(size(filteredMeds)==3);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  206-block  0
+call    3 never executed
+        1:  206-block  1
+        1:  207:    free(filteredMeds->elems);
+        1:  208:    free(filteredMeds);
+        1:  209:    filteredMeds = filterMeds(far, -1, "p");
+        1:  209-block  0
+call    0 returned 1
+       1*:  210:    assert(size(filteredMeds)==2);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  210-block  0
+call    3 never executed
+        1:  210-block  1
+        1:  211:    destroyFarmacie(far);
+        1:  211-block  0
+call    0 returned 1
+        1:  212:    free(filteredMeds->elems);
+        1:  213:    free(filteredMeds);
+        1:  214:}

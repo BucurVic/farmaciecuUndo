@@ -1,0 +1,47 @@
+        -:    0:Source:C:/Users/Blajan David/faculta/sem 2-oop/farmacie2/main.c
+        -:    0:Graph:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\main.c.gcno
+        -:    0:Data:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\main.c.gcda
+        -:    0:Runs:1
+        -:    1:#include "Medicament.h"
+        -:    2:#include "Farmacie.h"
+        -:    3:#include "FarmacieService.h"
+        -:    4:#include "ui.h"
+        -:    5:
+        -:    6:/**
+        -:    7: * function to run all tests
+        -:    8: */
+function TestAll called 1 returned 100% blocks executed 100%
+        1:    9:void TestAll(){
+        1:   10:    testCreateDestroy();
+        1:   10-block  0
+call    0 returned 1
+        1:   11:    testAddFarmacie();
+call    0 returned 1
+        1:   12:    testChangeFarmacie();
+call    0 returned 1
+        1:   13:    testDeleteFarmacie();
+call    0 returned 1
+        1:   14:    testAddMed();
+call    0 returned 1
+        1:   15:    testChangeMed();
+call    0 returned 1
+        1:   16:    testDeleteMed();
+call    0 returned 1
+        1:   17:    testSortMeds();
+call    0 returned 1
+        1:   18:    testFilterMeds();
+call    0 returned 1
+        1:   19:}
+        -:   20:
+        -:   21:/**
+        -:   22: * main function
+        -:   23: */
+function main called 1 returned 0% blocks executed 75%
+        1:   24:int main() {
+        1:   25:    TestAll();
+        1:   25-block  0
+call    0 returned 1
+        1:   26:    run();
+call    0 returned 0
+    #####:   27:    return 0;
+        -:   28:}

@@ -1,0 +1,278 @@
+        -:    0:Source:C:/Users/Blajan David/faculta/sem 2-oop/farmacie2/ui.c
+        -:    0:Graph:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\ui.c.gcno
+        -:    0:Data:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\ui.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Blajan David on 3/10/2024.
+        -:    3://
+        -:    4:
+        -:    5:#include "ui.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <string.h>
+        -:    9:
+        -:   10:/**
+        -:   11: * function to print the options
+        -:   12: */
+function printOptions called 1 returned 100% blocks executed 100%
+        1:   13:void printOptions(){
+        1:   14:    printf("exit - Pentru a parasi aplicatia\n"
+        1:   14-block  0
+call    0 returned 1
+        -:   15:           "add - Pentru a adauga medicament (expecting id-integer, nume-char, concentratie - char, cantitate - char)\n"
+        -:   16:           "change - Pentru a modifica medicament (expecting id-integer, nume-char, concentratie - char)\n"
+        -:   17:           "delete - Pentru a sterge medicament (expecting id-integer)\n"
+        -:   18:           "sorted - Pentru a afisa lista sortata (expecting true-if reverse sort)\n"
+        -:   19:           "filter - Pentru a afisa lista sortata (expecting byAmount - if filter by amount/byName - if filter by name)\n");
+        1:   20:}
+        -:   21:
+        -:   22:/**
+        -:   23: * ui function to add the med
+        -:   24: */
+function addMedUi called 0 returned 0% blocks executed 0%
+    #####:   25:void addMedUi(Farmacie* far, int id, char* nume, char* concentratie, int cantitate){
+    #####:   26:    int error = addMedService(far, id, nume, concentratie, cantitate);
+    %%%%%:   26-block  0
+call    0 never executed
+    #####:   27:    if (error!=0)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   28:        printf("Invalid input\n");
+    %%%%%:   28-block  0
+call    0 never executed
+        -:   29:    else
+    #####:   30:        printf("Med was saved\n");
+    %%%%%:   30-block  0
+call    0 never executed
+    #####:   31:}
+        -:   32:
+        -:   33:/**
+        -:   34: * ui function to change the med
+        -:   35: */
+function changeMedUi called 0 returned 0% blocks executed 0%
+    #####:   36:void changeMedUi(Farmacie* far,int id,char* nume, char* concentratie){
+    #####:   37:    int error = changeMedService(far, id, nume, concentratie);
+    %%%%%:   37-block  0
+call    0 never executed
+    #####:   38:    if (error==5)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   39:        printf("Med id doesnt match with any in the list\n");
+    %%%%%:   39-block  0
+call    0 never executed
+    #####:   40:    else if (error!=0)
+    %%%%%:   40-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   41:        printf("Invalid input\n");
+    %%%%%:   41-block  0
+call    0 never executed
+        -:   42:    else
+    #####:   43:        printf("Med was changed\n");
+    %%%%%:   43-block  0
+call    0 never executed
+    #####:   44:}
+        -:   45:
+        -:   46:/**
+        -:   47: * ui function to delete the med
+        -:   48: */
+function deleteMedUi called 0 returned 0% blocks executed 0%
+    #####:   49:void deleteMedUi(Farmacie* far, int id){
+    #####:   50:    int error = deleteMedService(far, id);
+    %%%%%:   50-block  0
+call    0 never executed
+    #####:   51:    if (error == 1)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   52:        printf("No med with the id in the list\n");
+    %%%%%:   52-block  0
+call    0 never executed
+        -:   53:    else
+    #####:   54:        printf("Med was deleted successfully\n");
+    %%%%%:   54-block  0
+call    0 never executed
+    #####:   55:}
+        -:   56:
+        -:   57:/**
+        -:   58: * ui function to print the sorted meds after name, amount
+        -:   59: */
+function printSorted called 0 returned 0% blocks executed 0%
+    #####:   60:void printSorted(Farmacie* far, char* reverse){
+        -:   61:    Farmacie* list;
+    #####:   62:    list = sortMeds(far, reverse);
+    %%%%%:   62-block  0
+call    0 never executed
+    #####:   63:    for(int i=0;i<size(list);i++){
+    %%%%%:   63-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed (fallthrough)
+    #####:   64:        printf("%d %s %s %d\n", getId(getElement(list, i)),
+    %%%%%:   64-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+        -:   65:               getName(getElement(list, i)),
+        -:   66:               getConcentration(getElement(list, i)),
+        -:   67:               getAmount(getElement(list,i)));
+        -:   68:    }
+    #####:   69:}
+        -:   70:
+        -:   71:/**
+        -:   72: * ui function to print the filtered meds by amount, name
+        -:   73: */
+function filterMedUi called 0 returned 0% blocks executed 0%
+    #####:   74:void filterMedUi(Farmacie* far, int amount, char* letter){
+        -:   75:    Farmacie* list;
+    #####:   76:    list = filterMeds(far, amount, letter);
+    %%%%%:   76-block  0
+call    0 never executed
+    #####:   77:    for(int i=0;i<size(list);i++){
+    %%%%%:   77-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed (fallthrough)
+    #####:   78:        printf("%d %s %s %d\n", getId(getElement(list, i)),
+    %%%%%:   78-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+        -:   79:               getName(getElement(list, i)),
+        -:   80:               getConcentration(getElement(list, i)),
+        -:   81:               getAmount(getElement(list,i)));
+        -:   82:    }
+    #####:   83:    free(list->elems);
+    #####:   84:    free(list);
+    #####:   85:}
+        -:   86:
+        -:   87:/**
+        -:   88: * ui function to run the app
+        -:   89: */
+function run called 1 returned 0% blocks executed 16%
+        1:   90:void run(){
+        1:   91:    Farmacie *far = createFarmacie();
+        1:   91-block  0
+call    0 returned 1
+        -:   92:    char cmd[100];
+    #####:   93:    while(1){
+        1:   94:        printOptions();
+        1:   94-block  0
+call    0 returned 1
+        1:   95:        fgets(cmd, sizeof(cmd), stdin);
+call    0 returned 1
+call    1 returned 0
+    #####:   96:        cmd[strcspn(cmd,"\n")] = '\0';
+        -:   97:
+    #####:   98:        if (strcmp(cmd, "exit") == 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   99:            break;
+        -:  100:        }
+        -:  101:
+    #####:  102:        char *token = strtok(cmd, " ");
+    %%%%%:  102-block  0
+call    0 never executed
+        -:  103:        char *parts[100];
+    #####:  104:        int count = 0;
+    #####:  105:        while(token!=NULL){
+    %%%%%:  105-block  0
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  106:            parts[count++] = token;
+    #####:  107:            token = strtok(NULL," ");
+    %%%%%:  107-block  0
+call    0 never executed
+        -:  108:        }
+        -:  109:
+    #####:  110:        char *optiune = parts[0];
+    #####:  111:        if (strcmp(optiune, "add") == 0){
+    %%%%%:  111-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  112:            int id = atoi(parts[1]);
+    %%%%%:  112-block  0
+call    0 never executed
+    #####:  113:            char* nume = parts[2];
+    #####:  114:            char* concentratie = parts[3];
+    #####:  115:            int cantitate = atoi(parts[4]);
+call    0 never executed
+    #####:  116:            addMedUi(far, id, nume, concentratie, cantitate);
+call    0 never executed
+        -:  117:        }
+    #####:  118:        else if (strcmp(optiune, "change") == 0){
+    %%%%%:  118-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  119:            int id = atoi(parts[1]);
+    %%%%%:  119-block  0
+call    0 never executed
+    #####:  120:            char* nume = parts[2];
+    #####:  121:            char* concentratie = parts[3];
+    #####:  122:            changeMedUi(far, id, nume, concentratie);
+call    0 never executed
+        -:  123:        }
+    #####:  124:        else if (strcmp(optiune, "delete") == 0){
+    %%%%%:  124-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  125:            int id = atoi(parts[1]);
+    %%%%%:  125-block  0
+call    0 never executed
+    #####:  126:            deleteMedUi(far, id);
+call    0 never executed
+        -:  127:        }
+    #####:  128:        else if (strcmp(optiune, "sorted") == 0){
+    %%%%%:  128-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  129:            char* reverse = parts[1];
+    #####:  130:            strcpy(reverse, parts[1]);
+    #####:  131:            printSorted(far, reverse);
+    %%%%%:  131-block  0
+call    0 never executed
+        -:  132:        }
+    #####:  133:        else if (strcmp(optiune, "filter")==0) {
+    %%%%%:  133-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  134:            char *type1 = parts[1];
+    #####:  135:            char *letter = "";
+    #####:  136:            int amount = -1;
+    #####:  137:            if (strcmp(type1, "byAmount") == 0) {
+    %%%%%:  137-block  0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  138:                amount = atoi(parts[2]);
+    %%%%%:  138-block  0
+call    0 never executed
+    #####:  139:                if (strcmp(parts[3], "byName") == 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  140:                    letter = parts[4];
+    %%%%%:  140-block  0
+        -:  141:                }
+        -:  142:            } else {
+    #####:  143:                letter = parts[2];
+    %%%%%:  143-block  0
+        -:  144:            }
+    #####:  145:            filterMedUi(far, amount, letter);
+    %%%%%:  145-block  0
+call    0 never executed
+        -:  146:        }
+        -:  147:    }
+    #####:  148:    destroyFarmacie(far);
+    %%%%%:  148-block  0
+call    0 never executed
+    #####:  149:}
