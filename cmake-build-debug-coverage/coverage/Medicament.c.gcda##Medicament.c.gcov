@@ -1,172 +1,159 @@
-        -:    0:Source:C:/Users/Blajan David/faculta/sem 2-oop/farmacie2/Medicament.c
-        -:    0:Graph:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\Medicament.c.gcno
-        -:    0:Data:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\Medicament.c.gcda
+        -:    0:Source:C:/FACC/OOP/Lab5(Undo David)/farmaciecuUndo/Medicament.c
+        -:    0:Graph:C:\FACC\OOP\Lab5(Undo David)\farmaciecuUndo\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\Medicament.c.gcno
+        -:    0:Data:C:\FACC\OOP\Lab5(Undo David)\farmaciecuUndo\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\Medicament.c.gcda
         -:    0:Runs:1
-        -:    1://
-        -:    2:// Created by Blajan David on 3/9/2024.
-        -:    3://
-        -:    4:#include "Medicament.h"
-        -:    5:#include <assert.h>
-        -:    6:#include <stdlib.h>
-        -:    7:#include <string.h>
-        -:    8:
-        -:    9:/**
-        -:   10: * constructor for the med
-        -:   11: * @param id - int,>0
-        -:   12: * @param nume - char, not null
-        -:   13: * @param concentratie - char, not null
-        -:   14: * @param cantitate - int, >=0
-        -:   15: * @return med - Medicament type
-        -:   16: */
-function createMed called 33 returned 100% blocks executed 100%
-       33:   17:Medicament* createMed(int id, char* nume, char* concentratie, int cantitate){
-       33:   18:    Medicament *med = malloc(sizeof(Medicament));
-        -:   19:    int nr;
-        -:   20:
-       33:   21:    med->id = id;
-        -:   22:
-       33:   23:    nr = strlen(nume) + 1;
-       33:   24:    med->nume = malloc(sizeof(char) * nr );
-       33:   25:    strcpy_s(med->nume, nr, nume);
-       33:   25-block  0
-call    0 returned 33
-        -:   26:
-       33:   27:    nr = strlen(concentratie) + 1;
-       33:   28:    med->concentratie = malloc(sizeof(char) * nr);
-       33:   29:    strcpy_s(med->concentratie, nr, concentratie);
-call    0 returned 33
-        -:   30:
-       33:   31:    med->cantitate = cantitate;
+        -:    1:#include "Medicament.h"
+        -:    2:#include <assert.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#include <string.h>
+        -:    5:
+        -:    6:/**
+        -:    7: * constructor for the med
+        -:    8: * @param id - int,>0
+        -:    9: * @param nume - char, not null
+        -:   10: * @param concentratie - char, not null
+        -:   11: * @param cantitate - int, >=0
+        -:   12: * @return med - Medicament type
+        -:   13: */
+function createMed called 76 returned 100% blocks executed 100%
+       76:   14:Medicament* createMed(int id, char* nume, char* concentratie, int cantitate){
+       76:   15:    Medicament *med = malloc(sizeof(Medicament));
+        -:   16:    unsigned long long nr;
+        -:   17:
+       76:   18:    med->id = id;
+        -:   19:
+       76:   20:    nr = strlen(nume) + 1;
+       76:   21:    med->nume = malloc(sizeof(char) * nr );
+       76:   22:    strcpy(med->nume, nume);
+        -:   23:
+       76:   24:    nr = strlen(concentratie) + 1;
+       76:   25:    med->concentratie = malloc(sizeof(char) * nr);
+       76:   26:    strcpy(med->concentratie, concentratie);
+        -:   27:
+       76:   28:    med->cantitate = cantitate;
+        -:   29:
+       76:   30:    return med;
+       76:   30-block  0
+        -:   31:}
         -:   32:
-       33:   33:    return med;
-        -:   34:}
-        -:   35:
-        -:   36:/**
-        -:   37: * destructor for the array
-        -:   38: * @param med - Medicament type
-        -:   39: */
-function destroyMed called 33 returned 100% blocks executed 100%
-       33:   40:void destroyMed(Medicament* med){
-       33:   41:    free(med->nume);
-       33:   42:    free(med->concentratie);
-       33:   43:    free(med);
-       33:   44:}
-        -:   45:
-        -:   46:/**
-        -:   47: * validate function to validate the med
-        -:   48: * @return 0 - if everything went well
-        -:   49: *         1,2,3,4 - if there was an error with the med
-        -:   50: */
-function validate called 24 returned 100% blocks executed 100%
-       24:   51:int validate(Medicament* med){
-       24:   52:    if (med->id <= 0)
-       24:   52-block  0
+        -:   33:/**
+        -:   34: * destructor for the array
+        -:   35: * @param med - Medicament type
+        -:   36: */
+function destroyMed called 76 returned 100% blocks executed 100%
+       76:   37:void destroyMed(Medicament* med){
+       76:   38:    free(med->nume);
+       76:   39:    free(med->concentratie);
+       76:   40:    free(med);
+       76:   41:}
+        -:   42:
+        -:   43:
+function copyMedicament called 36 returned 100% blocks executed 100%
+       36:   44:Medicament* copyMedicament(Medicament* med){
+       36:   45:    return createMed(med->id, med->nume, med->concentratie, med->cantitate);
+       36:   45-block  0
+call    0 returned 36
+        -:   46:}
+        -:   47:
+        -:   48:/**
+        -:   49: * validate function to validate the med
+        -:   50: * @return 0 - if everything went well
+        -:   51: *         1,2,3,4 - if there was an error with the med
+        -:   52: */
+function validate called 27 returned 100% blocks executed 100%
+       27:   53:int validate(Medicament* med){
+       27:   54:    if (med->id <= 0)
+       27:   54-block  0
 branch  0 taken 1 (fallthrough)
-branch  1 taken 23
-        1:   53:        return 1;
-        1:   53-block  0
-       23:   54:    if (strlen(med->nume) == 0)
-       23:   54-block  0
+branch  1 taken 26
+        1:   55:        return 1;
+        1:   55-block  0
+       26:   56:    if (strlen(med->nume) == 0)
+       26:   56-block  0
 branch  0 taken 3 (fallthrough)
-branch  1 taken 20
-        3:   55:        return 2;
-        3:   55-block  0
-       20:   56:    if (strlen(med->concentratie) == 0)
-       20:   56-block  0
+branch  1 taken 23
+        3:   57:        return 2;
+        3:   57-block  0
+       23:   58:    if (strlen(med->concentratie) == 0)
+       23:   58-block  0
 branch  0 taken 1 (fallthrough)
-branch  1 taken 19
-        1:   57:        return 3;
-        1:   57-block  0
-       19:   58:    if (med->cantitate < 0)
-       19:   58-block  0
-branch  0 taken 1 (fallthrough)
-branch  1 taken 18
-        1:   59:        return 4;
+branch  1 taken 22
+        1:   59:        return 3;
         1:   59-block  0
-       18:   60:    return 0;
-       18:   60-block  0
-        -:   61:}
-        -:   62:
-        -:   63:/**
-        -:   64: * getter for the id
-        -:   65: * @return med id
-        -:   66: */
-function getId called 70 returned 100% blocks executed 100%
-       70:   67:int getId(Medicament* med) {
-       70:   68:    return med->id;
-       70:   68-block  0
-        -:   69:}
-        -:   70:
-        -:   71:/**
-        -:   72: * getter for the name
-        -:   73: * @return med name
-        -:   74: */
+       22:   60:    if (med->cantitate < 0)
+       22:   60-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 21
+        1:   61:        return 4;
+        1:   61-block  0
+       21:   62:    return 0;
+       21:   62-block  0
+        -:   63:}
+        -:   64:
+        -:   65:/**
+        -:   66: * getter for the id
+        -:   67: * @return med id
+        -:   68: */
+function getId called 164 returned 100% blocks executed 100%
+      164:   69:int getId(Medicament* med) {
+      164:   70:    return med->id;
+      164:   70-block  0
+        -:   71:}
+        -:   72:
+        -:   73:/**
+        -:   74: * getter for the name
+        -:   75: * @return med name
+        -:   76: */
 function getName called 62 returned 100% blocks executed 100%
-       62:   75:char* getName(Medicament* med){
-       62:   76:    return med->nume;
-       62:   76-block  0
-        -:   77:}
-        -:   78:
-        -:   79:/**
-        -:   80: * getter for the concentration
-        -:   81: * @return med concentration
-        -:   82: */
+       62:   77:char* getName(Medicament* med){
+       62:   78:    return med->nume;
+       62:   78-block  0
+        -:   79:}
+        -:   80:
+        -:   81:/**
+        -:   82: * getter for the concentration
+        -:   83: * @return med concentration
+        -:   84: */
 function getConcentration called 10 returned 100% blocks executed 100%
-       10:   83:char* getConcentration(Medicament* med){
-       10:   84:    return med->concentratie;
-       10:   84-block  0
-        -:   85:}
-        -:   86:
-        -:   87:/**
-        -:   88: * getter for the amount
-        -:   89: * @return med amount
-        -:   90: */
+       10:   85:char* getConcentration(Medicament* med){
+       10:   86:    return med->concentratie;
+       10:   86-block  0
+        -:   87:}
+        -:   88:
+        -:   89:/**
+        -:   90: * getter for the amount
+        -:   91: * @return med amount
+        -:   92: */
 function getAmount called 21 returned 100% blocks executed 100%
-       21:   91:int getAmount(Medicament* med){
-       21:   92:    return med->cantitate;
-       21:   92-block  0
-        -:   93:}
-        -:   94:
-        -:   95:/**
-        -:   96: * setter for the amount
-        -:   97: */
+       21:   93:int getAmount(Medicament* med){
+       21:   94:    return med->cantitate;
+       21:   94-block  0
+        -:   95:}
+        -:   96:
+        -:   97:/**
+        -:   98: * setter for the amount
+        -:   99: */
 function setAmount called 2 returned 100% blocks executed 100%
-        2:   98:void setAmount(Medicament* med, int quantity){
-        2:   99:    med->cantitate = quantity;
-        2:  100:}
-        -:  101:
-        -:  102:/**
-        -:  103: * functions for testing
-        -:  104: */
+        2:  100:void setAmount(Medicament* med, int quantity){
+        2:  101:    med->cantitate = quantity;
+        2:  102:}
+        -:  103:
+        -:  104:/**
+        -:  105: * functions for testing
+        -:  106: */
 function testCreateDestroy called 1 returned 100% blocks executed 81%
-        1:  105:void testCreateDestroy(){
-        1:  106:    Medicament* med5 = createMed(1, "paracetamol", "70%", 10);
-        1:  106-block  0
-call    0 returned 1
-       1*:  107:    assert(getId(med5) == 1);
-call    0 returned 1
-branch  1 taken 0 (fallthrough)
-branch  2 taken 1
-    %%%%%:  107-block  0
-call    3 never executed
-        1:  107-block  1
-       1*:  108:    assert(strcmp(getName(med5),"paracetamol")==0);
+        1:  107:void testCreateDestroy(){
+        1:  108:    Medicament* med5 = createMed(1, "paracetamol", "70%", 10);
         1:  108-block  0
 call    0 returned 1
-branch  1 taken 0 (fallthrough)
-branch  2 taken 1
-    %%%%%:  108-block  1
-call    3 never executed
-        1:  108-block  2
-       1*:  109:    assert(strcmp(getConcentration(med5),"70%")==0);
-        1:  109-block  0
+       1*:  109:    assert(getId(med5) == 1);
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
 branch  2 taken 1
-    %%%%%:  109-block  1
+    %%%%%:  109-block  0
 call    3 never executed
-        1:  109-block  2
-       1*:  110:    assert(getAmount(med5)==10);
+        1:  109-block  1
+       1*:  110:    assert(strcmp(getName(med5),"paracetamol")==0);
         1:  110-block  0
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
@@ -174,7 +161,7 @@ branch  2 taken 1
     %%%%%:  110-block  1
 call    3 never executed
         1:  110-block  2
-       1*:  111:    assert(validate(med5) == 0);
+       1*:  111:    assert(strcmp(getConcentration(med5),"70%")==0);
         1:  111-block  0
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
@@ -182,60 +169,76 @@ branch  2 taken 1
     %%%%%:  111-block  1
 call    3 never executed
         1:  111-block  2
-        -:  112:
-        1:  113:    Medicament* med1 = createMed(2, "", "60%", 5);
+       1*:  112:    assert(getAmount(med5)==10);
+        1:  112-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  112-block  1
+call    3 never executed
+        1:  112-block  2
+       1*:  113:    assert(validate(med5) == 0);
         1:  113-block  0
 call    0 returned 1
-       1*:  114:    assert(validate(med1) == 2);
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  113-block  1
+call    3 never executed
+        1:  113-block  2
+        -:  114:
+        1:  115:    destroyMed(med5);
+        1:  115-block  0
+call    0 returned 1
+        -:  116:
+        1:  117:    Medicament* med1 = createMed(2, "", "60%", 5);
+call    0 returned 1
+       1*:  118:    assert(validate(med1) == 2);
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
 branch  2 taken 1
-    %%%%%:  114-block  0
+    %%%%%:  118-block  0
 call    3 never executed
-        1:  114-block  1
-        -:  115:
-        1:  116:    Medicament* med2 = createMed(3, "xanax", "", 3);
-        1:  116-block  0
-call    0 returned 1
-       1*:  117:    assert(validate(med2) == 3);
-call    0 returned 1
-branch  1 taken 0 (fallthrough)
-branch  2 taken 1
-    %%%%%:  117-block  0
-call    3 never executed
-        1:  117-block  1
-        -:  118:
-        1:  119:    Medicament* med3 = createMed(-1, "nurofen", "", 5);
+        1:  118-block  1
+        1:  119:    destroyMed(med1);
         1:  119-block  0
 call    0 returned 1
-       1*:  120:    assert(validate(med3) == 1);
+        -:  120:
+        1:  121:    Medicament* med2 = createMed(3, "xanax", "", 3);
+call    0 returned 1
+       1*:  122:    assert(validate(med2) == 3);
 call    0 returned 1
 branch  1 taken 0 (fallthrough)
 branch  2 taken 1
-    %%%%%:  120-block  0
+    %%%%%:  122-block  0
 call    3 never executed
-        1:  120-block  1
-        -:  121:
-        1:  122:    Medicament* med4 = createMed(4,"paracetamol", "50%", -6);
-        1:  122-block  0
+        1:  122-block  1
+        1:  123:    destroyMed(med2);
+        1:  123-block  0
 call    0 returned 1
-       1*:  123:    assert(validate(med4) == 4);
-call    0 returned 1
-branch  1 taken 0 (fallthrough)
-branch  2 taken 1
-    %%%%%:  123-block  0
-call    3 never executed
-        1:  123-block  1
         -:  124:
-        1:  125:    destroyMed(med5);
-        1:  125-block  0
+        1:  125:    Medicament* med3 = createMed(-1, "nurofen", "", 5);
 call    0 returned 1
-        1:  126:    destroyMed(med1);
+       1*:  126:    assert(validate(med3) == 1);
 call    0 returned 1
-        1:  127:    destroyMed(med2);
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  126-block  0
+call    3 never executed
+        1:  126-block  1
+        1:  127:    destroyMed(med3);
+        1:  127-block  0
 call    0 returned 1
-        1:  128:    destroyMed(med3);
+        -:  128:
+        1:  129:    Medicament* med4 = createMed(4,"paracetamol", "50%", -6);
 call    0 returned 1
-        1:  129:    destroyMed(med4);
+       1*:  130:    assert(validate(med4) == 4);
 call    0 returned 1
-        1:  130:}
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  130-block  0
+call    3 never executed
+        1:  130-block  1
+        1:  131:    destroyMed(med4);
+        1:  131-block  0
+call    0 returned 1
+        1:  132:}

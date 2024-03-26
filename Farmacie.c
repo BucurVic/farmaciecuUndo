@@ -1,6 +1,3 @@
-//
-// Created by Blajan David on 3/9/2024.
-//
 #include "Farmacie.h"
 #include <assert.h>
 #include <string.h>
@@ -14,16 +11,22 @@ Farmacie* createFarmacie(){
     Farmacie* far = malloc(sizeof(Farmacie));
     far->len = 0;
     far->maxCapacity = 1;
-    far->elems = malloc(sizeof(Medicament) * far->maxCapacity);
+    far->elems = malloc(sizeof(ElemType) * far->maxCapacity);
     return far;
+}
+
+void destroyFarmacieMed(Farmacie* far){
+    destroyFarmacie(far, (DestroyFct) destroyMed, 0);
 }
 
 /**
  * destructor for farmacie
  */
-void destroyFarmacie(Farmacie* far){
-    for(int i=0;i<size(far);i++)
-        destroyMed(far->elems[i]);
+void destroyFarmacie(Farmacie* far, DestroyFct functiedestroy, int ok){
+    for(int i=0;i<size(far);i++) {
+        ElemType elem = far->elems[i];
+        functiedestroy(elem);
+    }
     free(far->elems);
     free(far);
 }
@@ -100,16 +103,16 @@ int changeMed(Farmacie* far, ElemType med){
     for (int i=0; i<size(far); i++){
         if (getId(med) == getId(getElement(far, i))){
             unsigned long long nr;
-
+            Medicament* medicament = getElement(far, i);
             nr = strlen(getName(med)) + 1;
-            free(far->elems[i]->nume);
-            far->elems[i]->nume = malloc(sizeof(char) * nr);
-            strcpy_s(far->elems[i]->nume, nr, getName(med));
+            free(medicament->nume);
+            medicament->nume = malloc(sizeof(char) * nr);
+            strcpy(medicament->nume, getName(med));
 
             nr = strlen(getConcentration(med)) + 1;
-            free(far->elems[i]->concentratie);
-            far->elems[i]->concentratie = malloc(sizeof(char) * nr);
-            strcpy_s(far->elems[i]->concentratie, nr, getConcentration(med));
+            free(medicament->concentratie);
+            medicament->concentratie = malloc(sizeof(char) * nr);
+            strcpy(medicament->concentratie, getConcentration(med));
             return 0;
         }
     }
@@ -136,9 +139,14 @@ int deleteMed(Farmacie* far,int id){
     return 1;
 }
 
-/**
- * Functions for testing
- */
+Farmacie* copyFarmacie(Farmacie* far, CopyFct functiecopie){
+    Farmacie* farmacie = createFarmacie();
+    for (int i=0;i<size(far);i++){
+        ElemType med = getElement(far,i);
+        addMed(farmacie, functiecopie(med));
+    }
+    return farmacie;
+}
 
 void testAddFarmacie(){
     Farmacie* far = createFarmacie();
@@ -153,7 +161,34 @@ void testAddFarmacie(){
     Medicament* med3 = getElement(far, 0);
     assert(size(far)==2);
     assert(getAmount(med3)==20);
-    destroyFarmacie(far);
+    destroyFarmacie(far, (DestroyFct) destroyMed, 0);
+}
+
+void testCopyList(){
+    Farmacie* far = createFarmacie();
+    addMed(far, createMed(1,"paracetamol", "70%", 10));
+    addMed(far, createMed(2, "xanax", "50%", 4));
+    Farmacie* far2 = copyFarmacie(far, (CopyFct) copyMedicament);
+    assert(size(far2) == 2);
+    Medicament* med = getElement(far2, 0);
+    assert(strcmp(med->nume, "paracetamol") == 0);
+    destroyFarmacie(far, (DestroyFct) destroyMed, 0);
+    destroyFarmacie(far2, (DestroyFct) destroyMed, 0);
+}
+
+void testListadeListe() {
+    Farmacie *fardefar = createFarmacie();
+    Farmacie *far = createFarmacie();
+    addMed(far, createMed(1, "paracetamol", "70%", 10));
+    addMed(far, createMed(2, "xanax", "50%", 4));
+    addMed(fardefar, far);
+    Farmacie* copie = copyFarmacie(far, (CopyFct) copyMedicament);
+    addMed(fardefar, copie);
+    assert(size(fardefar) == 2);
+    assert(size(far) == 2);
+    Farmacie* copie2 = getElement(fardefar, 1);
+    assert(size(copie2) == 2);
+    destroyFarmacie(fardefar, (DestroyFct) destroyFarmacieMed, 0);
 }
 
 void testChangeFarmacie(){
@@ -180,7 +215,7 @@ void testChangeFarmacie(){
     assert (strcmp(getConcentration(med4), "55%") == 0);
     destroyMed(medChange1);
     destroyMed(medChange2);
-    destroyFarmacie(far);
+    destroyFarmacie(far, (DestroyFct) destroyMed, 0);
 }
 
 void testDeleteFarmacie(){
@@ -190,5 +225,5 @@ void testDeleteFarmacie(){
     assert (size(far)==2);
     deleteMed(far, 1);
     assert(size(far)==1);
-    destroyFarmacie(far);
+    destroyFarmacie(far, (DestroyFct) destroyMed, 0);
 }

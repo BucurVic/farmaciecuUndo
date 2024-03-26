@@ -1,7 +1,3 @@
-//
-// Created by Blajan David on 3/9/2024.
-//
-
 #ifndef FARMACIE_MEDICAMENT_H
 #define FARMACIE_MEDICAMENT_H
 
@@ -63,6 +59,8 @@ int getAmount(Medicament*);
  * setter for the amount
  */
 void setAmount(Medicament*, int);
+
+Medicament* copyMedicament(Medicament* med);
 
 /**
  * functions for testing

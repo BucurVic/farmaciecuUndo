@@ -11,11 +11,14 @@ void TestAll(){
     testAddFarmacie();
     testChangeFarmacie();
     testDeleteFarmacie();
+    testCopyList();
+    testListadeListe();
     testAddMed();
     testChangeMed();
     testDeleteMed();
     testSortMeds();
     testFilterMeds();
+    testUndo();
 }
 
 /**

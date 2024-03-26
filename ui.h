@@ -1,7 +1,3 @@
-//
-// Created by Blajan David on 3/10/2024.
-//
-
 #ifndef FARMACIE_UI_H
 #define FARMACIE_UI_H
 
@@ -15,27 +11,27 @@ void printOptions();
 /**
  * ui function to add the med
  */
-void addMedUi(Farmacie*, int, char*, char*, int);
+void addMedUi(ServiceFarmacie*, int, char*, char*, int);
 
 /**
  * ui function to change the med
  */
-void changeMedUi(Farmacie*, int, char*, char*);
+void changeMedUi(ServiceFarmacie*, int, char*, char*);
 
 /**
  * ui function to delete the med
  */
-void deleteMedUi(Farmacie*, int);
+void deleteMedUi(ServiceFarmacie*, int);
 
 /**
  * ui function to print the sorted meds after name, amount
  */
-void printSorted(Farmacie*, char*);
+void printSorted(ServiceFarmacie*, char*);
 
 /**
  * ui function to print the filtered meds by amount, name
  */
-void filterMedUi(Farmacie* , int, char*);
+void filterMedUi(ServiceFarmacie* , int, char*);
 
 /**
  * ui function to run the app

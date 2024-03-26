@@ -1,6 +1,6 @@
-        -:    0:Source:C:/Users/Blajan David/faculta/sem 2-oop/farmacie2/main.c
-        -:    0:Graph:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\main.c.gcno
-        -:    0:Data:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\main.c.gcda
+        -:    0:Source:C:/FACC/OOP/Lab5(Undo David)/farmaciecuUndo/main.c
+        -:    0:Graph:C:\FACC\OOP\Lab5(Undo David)\farmaciecuUndo\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\main.c.gcno
+        -:    0:Data:C:\FACC\OOP\Lab5(Undo David)\farmaciecuUndo\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\main.c.gcda
         -:    0:Runs:1
         -:    1:#include "Medicament.h"
         -:    2:#include "Farmacie.h"
@@ -21,27 +21,32 @@ call    0 returned 1
 call    0 returned 1
         1:   13:    testDeleteFarmacie();
 call    0 returned 1
-        1:   14:    testAddMed();
+        1:   14:    testCopyList();
 call    0 returned 1
-        1:   15:    testChangeMed();
+        1:   15:    testListadeListe();
 call    0 returned 1
-        1:   16:    testDeleteMed();
+        1:   16:    testAddMed();
 call    0 returned 1
-        1:   17:    testSortMeds();
+        1:   17:    testChangeMed();
 call    0 returned 1
-        1:   18:    testFilterMeds();
+        1:   18:    testDeleteMed();
 call    0 returned 1
-        1:   19:}
-        -:   20:
-        -:   21:/**
-        -:   22: * main function
-        -:   23: */
-function main called 1 returned 0% blocks executed 75%
-        1:   24:int main() {
-        1:   25:    TestAll();
-        1:   25-block  0
+        1:   19:    testSortMeds();
 call    0 returned 1
-        1:   26:    run();
-call    0 returned 0
-    #####:   27:    return 0;
-        -:   28:}
+        1:   20:    testFilterMeds();
+call    0 returned 1
+        1:   21:    testUndo();
+call    0 returned 1
+        1:   22:}
+        -:   23:
+        -:   24:/**
+        -:   25: * main function
+        -:   26: */
+function main called 1 returned 100% blocks executed 100%
+        1:   27:int main() {
+        1:   28:    TestAll();
+        1:   28-block  0
+call    0 returned 1
+        -:   29:    //run();
+        1:   30:    return 0;
+        -:   31:}

@@ -1,6 +1,3 @@
-//
-// Created by Blajan David on 3/9/2024.
-//
 #include "Medicament.h"
 #include <assert.h>
 #include <stdlib.h>
@@ -22,11 +19,11 @@ Medicament* createMed(int id, char* nume, char* concentratie, int cantitate){
 
     nr = strlen(nume) + 1;
     med->nume = malloc(sizeof(char) * nr );
-    strcpy_s(med->nume, nr, nume);
+    strcpy(med->nume, nume);
 
     nr = strlen(concentratie) + 1;
     med->concentratie = malloc(sizeof(char) * nr);
-    strcpy_s(med->concentratie, nr, concentratie);
+    strcpy(med->concentratie, concentratie);
 
     med->cantitate = cantitate;
 
@@ -41,6 +38,11 @@ void destroyMed(Medicament* med){
     free(med->nume);
     free(med->concentratie);
     free(med);
+}
+
+
+Medicament* copyMedicament(Medicament* med){
+    return createMed(med->id, med->nume, med->concentratie, med->cantitate);
 }
 
 /**

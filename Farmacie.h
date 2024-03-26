@@ -1,23 +1,24 @@
-//
-// Created by Blajan David on 3/9/2024.
-//
-
 #ifndef FARMACIE_FARMACIE_H
 #define FARMACIE_FARMACIE_H
 
 #include "Medicament.h"
 
-typedef Medicament* ElemType;
-
+typedef void* ElemType;
 /**
  * Farmacie - struct type
  * elems - array of meds
  * len - length of the array
  */
+
+typedef void(*DestroyFct)(ElemType);
+
+typedef ElemType (*CopyFct)(ElemType);
+
 typedef struct {
     ElemType* elems;
     int len;
     int maxCapacity;
+    DestroyFct destroyfunciton;
 } Farmacie;
 
 /**
@@ -26,10 +27,12 @@ typedef struct {
  */
 Farmacie* createFarmacie();
 
+void destroyFarmacieMed(Farmacie* far);
+
 /**
  * destructor for farmacie
  */
-void destroyFarmacie(Farmacie*);
+void destroyFarmacie(Farmacie*, DestroyFct functiedestroy, int);
 
 /**
  * function to resize the array
@@ -58,7 +61,7 @@ int size(Farmacie*);
  * @param farmacie - Farmacie*, array of meds
  * @param med - Medicament*
  */
-void addMed(Farmacie*, ElemType );
+void addMed(Farmacie*, ElemType);
 
 /**
  * repo function to change an element in the array, changes the name and concentration
@@ -87,10 +90,14 @@ int deleteMed(Farmacie*, int);
  */
 Farmacie* getAll(Farmacie*);
 
+Farmacie* copyFarmacie(Farmacie*, CopyFct);
+
 /**
  * Functions for testing
  */
 void testAddFarmacie();
+void testCopyList();
+void testListadeListe();
 void testChangeFarmacie();
 void testDeleteFarmacie();
 

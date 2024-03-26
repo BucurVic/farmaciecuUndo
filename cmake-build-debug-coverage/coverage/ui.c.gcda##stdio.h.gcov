@@ -1,6 +1,6 @@
-        -:    0:Source:C:/Users/Blajan David/faculta/sem 2-oop/CLion 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h
-        -:    0:Graph:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\ui.c.gcno
-        -:    0:Data:C:\Users\Blajan David\faculta\sem 2-oop\farmacie2\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\ui.c.gcda
+        -:    0:Source:C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h
+        -:    0:Graph:C:\FACC\OOP\Lab5(Undo David)\farmaciecuUndo\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\ui.c.gcno
+        -:    0:Data:C:\FACC\OOP\Lab5(Undo David)\farmaciecuUndo\cmake-build-debug-coverage\CMakeFiles\farmacie2.dir\ui.c.gcda
         -:    0:Runs:1
         -:    1:/**
         -:    2: * This file has no copyright assigned and is placed in the Public Domain.
@@ -372,17 +372,17 @@
         -:  368:
         -:  369:__mingw_ovr
         -:  370:__attribute__((__format__ (gnu_printf, 1, 2))) __MINGW_ATTRIB_NONNULL(1)
-function printf called 1 returned 100% blocks executed 100%
-        1:  371:int printf (const char *__format, ...)
+function printf called 0 returned 0% blocks executed 0%
+    #####:  371:int printf (const char *__format, ...)
         -:  372:{
         -:  373:  int __retval;
-        1:  374:  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
-        1:  375:  __retval = __mingw_vfprintf( stdout, __format, __local_argv );
-        1:  375-block  0
-call    0 returned 1
-call    1 returned 1
-        1:  376:  __builtin_va_end( __local_argv );
-        1:  377:  return __retval;
+    #####:  374:  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+    #####:  375:  __retval = __mingw_vfprintf( stdout, __format, __local_argv );
+    %%%%%:  375-block  0
+call    0 never executed
+call    1 never executed
+    #####:  376:  __builtin_va_end( __local_argv );
+    #####:  377:  return __retval;
         -:  378:}
         -:  379:
         -:  380:#if __MINGW_FORTIFY_VA_ARG
